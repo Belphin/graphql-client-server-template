@@ -23,7 +23,7 @@ import AuthModal, {
 } from 'components/Modals/AuthModals/AuthModal';
 import LanguageSelector from 'components/UI/LanguageSelector';
 
-const NavBar: FC = () => {
+const Navbar: FC = () => {
   const { t } = useTranslation();
   const router = useNavigate();
   const { pathname } = useLocation();
@@ -181,4 +181,4 @@ const NavBar: FC = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;

@@ -2,7 +2,7 @@ import React, { useState, FC, useEffect } from 'react';
 import AppRouter from 'components/AppRouter';
 import { AuthContext } from 'context/AuthContext';
 import { IUser } from 'models/IUser';
-import NavBar from 'components/NavBar';
+import Navbar from 'components/Navbar';
 import { Themes, ThemesIds } from 'themes';
 import { Container, CssBaseline, ThemeProvider } from '@mui/material';
 import { VERIFY_TOKEN } from 'api/mutations';
@@ -48,7 +48,7 @@ const App: FC = () => {
     >
       <ThemeProvider theme={Themes[appThemeId]}>
         <CssBaseline />
-        <NavBar />
+        <Navbar />
         <Container maxWidth="xl">
           <AppRouter />
         </Container>
