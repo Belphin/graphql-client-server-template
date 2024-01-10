@@ -7,9 +7,9 @@ services:
     ports:
       - "$SERVER_PORT:$SERVER_PORT"
     command: bash -c "python manage.py runserver 0.0.0.0:$SERVER_PORT"
-    working_dir: /app/server/
+    working_dir: /var/www/server
     volumes:
-      - ./server:/app/server
+      - ./server:/var/www/server
     environment:
       - DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
     env_file:
@@ -31,9 +31,29 @@ services:
   client:
     container_name: client
     build: ./client
+    working_dir: /var/www/client/
     ports:
       - "$CLIENT_PORT:$CLIENT_PORT"
     volumes:
-      - ./client:/app
+      - ./server/:/var/www/server
+      - ./client/:/var/www/client/
     environment:
       - REACT_APP_GRAPHQL_ENDPOINT=${REACT_APP_GRAPHQL_ENDPOINT}
+
+  celery:
+    build:
+      context: ./server/
+      dockerfile: Dockerfile
+    container_name: celery
+    working_dir: /var/www/server
+    volumes:
+      - ./server:/var/www/server
+    command: celery -A server worker -l info
+    environment:
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_NAME=${DATABASE_NAME}
+    depends_on:
+      - database

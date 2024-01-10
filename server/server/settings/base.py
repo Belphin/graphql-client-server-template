@@ -41,11 +41,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'permissions',
+
     'graphene_django',
     'serious_django_graphene',
     'corsheaders',
+    'django_celery_results',
+    'celery',
 
-    'permissions',
 ]
 
 MIDDLEWARE = [
