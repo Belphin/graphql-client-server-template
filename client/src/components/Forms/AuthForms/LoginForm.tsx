@@ -27,13 +27,12 @@ interface LoginFormProps {
 }
 
 const LoginForm: FC<LoginFormProps> = ({ closeModal }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const {
     handleSubmit,
     register,
     formState: { errors },
-    setError,
   } = useForm<LoginFormInput>();
 
   const router = useNavigate();

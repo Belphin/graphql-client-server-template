@@ -1,7 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-
-from accounts.models import User
+from .models import User
 
 
 class AuthForm(AuthenticationForm):
@@ -11,15 +10,16 @@ class AuthForm(AuthenticationForm):
                 'There was a problem with your login.', code='invalid_login')
 
 
-class UserRegisterForm(UserCreationForm):
 
+class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('email', 'username', 'password1', 'password2', )
 
     def save(self, commit=True):
-        user = super(UserCreationForm, self).save(commit=False)
+        user = super(UserRegisterForm, self).save(commit=False)
         user.set_password(self.cleaned_data["password1"])
+
         if commit:
             user.save()
         return user
