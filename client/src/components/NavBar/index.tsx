@@ -165,10 +165,10 @@ const NavBar: FC = () => {
                     color="inherit"
                     sx={{ mr: '8px' }}
                   >
-                    Login
+                    {t('login')}
                   </Button>
                   <Button onClick={registerCLickHandler} color="inherit">
-                    Sign Up
+                    {t('singup')}
                   </Button>
                 </Box>
               )}{' '}
