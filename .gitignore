@@ -8,8 +8,6 @@ __pycache__/
 *.log
 mysql_data
 
-poetry.lock
-
 .env
 
 client/node_modules

@@ -12,6 +12,7 @@ services:
       - ./server:/app/server
     environment:
       - DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
+      - DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
     env_file:
       - .env
 
